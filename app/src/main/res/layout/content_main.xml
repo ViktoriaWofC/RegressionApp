@@ -12,29 +12,39 @@
     tools:context="com.user.example.regressionapp.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:id="@+id/text_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <View
-        android:layout_width="30dp"
-        android:layout_height="30dp"/>
+        <View
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
 
-    <Button
-        android:id="@+id/button_test1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="start async"/>
+        <Button
+            android:id="@+id/button_calc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start_calc"/>
 
-    <View
-        android:layout_width="30dp"
-        android:layout_height="30dp"/>
+        <View
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
 
-    <Button
-        android:id="@+id/button_test2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="cancel async"/>
+        <Button
+            android:id="@+id/button_show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_calc"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:orientation="vertical" />
+
+
 </LinearLayout>
