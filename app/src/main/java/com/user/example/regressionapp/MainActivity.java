@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     private Button bt1;
     private Button bt2;
     private Button bt3;
+    private EditText editCount;
+    String count = "";
     private Context context;
     RegressAsyncTask regressAsyncTask;
     double[] values = new double[7];
@@ -89,11 +92,14 @@ public class MainActivity extends AppCompatActivity {
 
         context = MainActivity.this;
 
+        editCount = (EditText)findViewById(R.id.edit_count);
+
 
         bt1 = (Button)findViewById(R.id.button_calc);
         bt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                count = editCount.getText().toString();
                 regressAsyncTask = new RegressAsyncTask();
                 regressAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
@@ -154,7 +160,8 @@ public class MainActivity extends AppCompatActivity {
 
                 ///////////////////////////////////////////////
                 LinearLayout layout = (LinearLayout) findViewById(R.id.linear);
-                if (mChart == null){
+                //if (mChart == null)
+                {
                     layout.removeAllViews();
                     initChart();
                     addSampleData();
@@ -162,11 +169,11 @@ public class MainActivity extends AppCompatActivity {
                     mRenderer.setYTitle("Оценка");
                     mChart = ChartFactory.getCubeLineChartView(MainActivity.this, mDataset, mRenderer, 0.3f);
                     layout.addView(mChart);
-                } else {
+                } /*else {
                     layout.removeAllViews();
                     //mChart.repaint();
                     layout.addView(mChart);
-                }
+                }*/
 
                 bt3.setEnabled(true);
             }
@@ -223,7 +230,8 @@ public class MainActivity extends AppCompatActivity {
                 values[6] = sum/n;
 
                 LinearLayout layout = (LinearLayout) findViewById(R.id.linear);
-                if (mChart2 == null) {
+                //if (mChart2 == null)
+                {
                     layout.removeAllViews();
                     initChart2();
                     addSampleData2();
@@ -232,11 +240,11 @@ public class MainActivity extends AppCompatActivity {
                     mRenderer2.setXAxisMin(4);
                     mChart2 = ChartFactory.getCubeLineChartView(MainActivity.this, mDataset2, mRenderer2, 0.3f);
                     layout.addView(mChart2);
-                } else {
+                } /*else {
                     layout.removeAllViews();
                     //mChart2.repaint();
                     layout.addView(mChart2);
-                }
+                }*/
             }
         });
 
@@ -296,8 +304,8 @@ public class MainActivity extends AppCompatActivity {
             //String line = null;
             String s = "";
             URL url;
-            path = "http://192.168.1.103:4444/server/getResult";
-            //path = "http://10.60.0.171:4444/server/getResult";
+            path = "http://192.168.1.103:4444/server/getResult/"+count;
+            //path = "http://10.60.0.171:4444/server/getResult/"+count;
             Log.d(TAG, path);
             try {
                 url = new URL(path);
